@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { POST } from './POST';
+import { POST, POST_INPUT } from './post.model';
 
 @Injectable()
 export class PostService {
@@ -13,11 +13,25 @@ export class PostService {
     return await this.postRepository.find({});
   }
 
-  async createPost(post: POST) {
-    await this.postRepository.save(post);
+  async createPost(post: POST_INPUT) {
+    let object = new POST()
+    object.author = post.author
+    object.photo = post.photo
+    object.timestamp = post.timestamp
+    object.image_content = post.image_content
+    object.content = post.content
+    await this.postRepository.save(object);
+    return object
   }
 
-  async deletePost(post: POST) {
-    await this.postRepository.delete(post);
+  async deletePost(post: POST_INPUT) {
+    let object = new POST()
+    object.author = post.author
+    object.photo = post.photo
+    object.timestamp = post.timestamp
+    object.image_content = post.image_content
+    object.content = post.content
+    await this.postRepository.delete(object);
+    return object
   }
 }

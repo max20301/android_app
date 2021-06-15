@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Body, Param, Request } from '@nestjs/common';
 import { PostService } from './post.service';
-import { POST } from './POST';
+import { POST } from './post.model';
 
 @Controller()
 export class PostController {

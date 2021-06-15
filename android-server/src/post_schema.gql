@@ -1,0 +1,29 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type POST {
+  id: Float!
+  author: String!
+  photo: String!
+  timestamp: Float!
+  content: String!
+  image_content: String!
+}
+
+type Query {
+  getPostList: [POST!]!
+}
+
+type Mutation {
+  createPost(post: POST_INPUT!): POST!
+  deletePost(post: POST_INPUT!): POST!
+}
+
+input POST_INPUT {
+  author: String!
+  photo: String!
+  timestamp: Float!
+  content: String!
+  image_content: String!
+}

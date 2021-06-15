@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { POST } from './entities/POST';
+import { POST } from './entities/post.model';
 import { PostModule } from './entities/post.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -12,7 +14,10 @@ import { PostModule } from './entities/post.module';
       username: 'root',
       password: 'max30201',
       database: 'post_data',
-      entities: [POST]
+      entities: [POST],
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/post_schema.gql'),
     }),
     PostModule,
   ],
